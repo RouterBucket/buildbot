@@ -1,7 +1,7 @@
 #!/bin/sh
 
-docker build -t openwrtorg/buildmaster -f docker/buildmaster/Dockerfile .
-docker push openwrtorg/buildmaster
+docker build -t routerbucket/buildmaster -f docker/buildmaster/Dockerfile .
+docker push routerbucket/buildmaster
 
-docker build -t openwrtorg/buildworker -f docker/buildworker/Dockerfile .
-docker push openwrtorg/buildworker
+docker build -t routerbucket/buildworker -f docker/buildworker/Dockerfile .
+docker push routerbucket/buildworker
