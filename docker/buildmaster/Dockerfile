@@ -1,9 +1,9 @@
 FROM        debian:11
-MAINTAINER  OpenWrt Maintainers
+MAINTAINER  ImmortalWrt Maintainers
 
 ARG         DEBIAN_FRONTEND=noninteractive
 ARG         BUILDBOT_VERSION=2.10.1
-ARG         OPENWRT_VERSION=unknown
+ARG         IMMORTALWRT_VERSION=unknown
 
 ENV         BUILDMASTER_CONFIG config.ini
 ENV         BUILDMASTER_PHASE  1
@@ -40,12 +40,12 @@ RUN \
 		service_identity
 RUN \
 	sed -i \
-	's/Welcome to buildbot/Welcome to OpenWrt buildbot/' \
+	's/Welcome to buildbot/Welcome to ImmortalWrt buildbot/' \
 	/usr/local/lib/python*/dist-packages/buildbot_www/static/scripts.js
 
 RUN \
 	sed -i \
-	"s;\"col-sm-12\"><ul><li ng-repeat;\"col-sm-12\"><ul><li>OpenWrt version: <a href=\"https://git.openwrt.org/$OPENWRT_VERSION\">$OPENWRT_VERSION</a></li><li ng-repeat;" \
+	"s;\"col-sm-12\"><ul><li ng-repeat;\"col-sm-12\"><ul><li>ImmortalWrt version: <a href=\"https://github.com/RouterBucket/immortalwrt/tree/$IMMORTALWRT_VERSION\">$IMMORTALWRT_VERSION</a></li><li ng-repeat;" \
 	/usr/local/lib/python*/dist-packages/buildbot_www/static/scripts.js
 
 ENV LANG=en_US.utf8
