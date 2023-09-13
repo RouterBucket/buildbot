@@ -1,13 +1,13 @@
 FROM        debian:11
-MAINTAINER  OpenWrt Maintainers
+MAINTAINER  ImmortalWrt Maintainers
 
 ARG         DEBIAN_FRONTEND=noninteractive
 ARG         BUILDBOT_VERSION=2.10.1
-ARG         OPENWRT_VERSION=unknown
+ARG         IMMORTALWRT_VERSION=unknown
 
-ENV         BUILDWORKER_MASTER builds.openwrt.org:9990
-ENV         BUILDWORKER_ADMIN contact@openwrt.org
-ENV         BUILDWORKER_DESCRIPTION Docker Container https://git.openwrt.org/$OPENWRT_VERSION
+ENV         BUILDWORKER_MASTER builds.computandotech.com.br:9990
+ENV         BUILDWORKER_ADMIN gustavo.mathias.rocha@gmail.com
+ENV         BUILDWORKER_DESCRIPTION Docker Container https://github.com/RouterBucket/immortalwrt/tree/$IMMORTALWRT_VERSION
 
 USER root
 
@@ -58,7 +58,7 @@ RUN \
     groupadd buildbot && \
     useradd \
 	--create-home --home-dir /builder \
-	--comment "OpenWrt buildbot" \
+	--comment "ImmortalWrt buildbot" \
 	--gid buildbot --shell /bin/bash buildbot && \
     chown buildbot:buildbot /builder && \
     chmod 0755 /entry.sh /start.sh
