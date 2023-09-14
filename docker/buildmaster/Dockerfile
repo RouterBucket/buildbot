@@ -60,7 +60,7 @@ RUN \
     groupadd buildbot && \
     useradd \
 	--create-home --home-dir /master \
-	--comment "OpenWrt buildbot" \
+	--comment "ImmortalWrt buildbot" \
 	--gid buildbot --shell /bin/bash buildbot && \
     chown buildbot:buildbot /master && \
     chmod 0755 /entry.sh /start.sh
