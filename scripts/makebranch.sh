@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 git_author="Release Management"
-git_email="lede-dev@lists.infradead.org"
+git_email="routerbucket@computando.com.br"
 
-base_url="http://downloads.lede-project.org/releases"
+base_url="http://dl.immortalwrt.computando.com.br/releases"
 
 [ -f "./feeds.conf.default" ] || {
 	echo "Please execute as ./${0##*/}" >&2
@@ -63,9 +63,9 @@ done
 
 [ -n "$codename" -a -n "$version" ] || usage
 
-if git rev-parse "lede-${version}^{tree}" >/dev/null 2>/dev/null; then
+if git rev-parse "immortalwrt-${version}^{tree}" >/dev/null 2>/dev/null; then
 	if [ -z "$ignore_existing" ]; then
-		echo "Branch lede-${version} already exists!" >&2
+		echo "Branch immortalwrt-${version} already exists!" >&2
 		exit 1
 	fi
 
@@ -89,7 +89,7 @@ export GIT_AUTHOR_EMAIL="$git_email"
 export GIT_COMMITTER_NAME="$git_author"
 export GIT_COMMITTER_EMAIL="$git_email"
 
-git checkout -b "lede-$version"
+git checkout -b "immortalwrt-$version"
 
 while read type name url; do
 	case "$type" in
@@ -97,13 +97,13 @@ while read type name url; do
 			case "$url" in
 				*^*|*\;*) : ;;
 				*)
-					ref="$(git ls-remote "$url" "lede-$version")"
+					ref="$(git ls-remote "$url" "immortalwrt-$version")"
 
 					if [ -z "$ref" ]; then
 						echo "WARNING: Feed \"$name\" provides no" \
-						     "\"lede-$version\" branch - using master!" >&2
+						     "\"immortalwrt-$version\" branch - using master!" >&2
 					else
-						url="$url;lede-$version"
+						url="$url;immortalwrt-$version"
 					fi
 				;;
 			esac
@@ -122,15 +122,15 @@ sed -e 's!^RELEASE:=.*!RELEASE:='"$codename"'!g' \
 	include/version.mk > include/version.branch && \
 		mv include/version.branch include/version.mk
 
-sed -e 's!http://downloads.lede-project.org/[^"]*!'"$base_url/$version-SNAPSHOT"'!g' \
+sed -e 's!http://dl.immortalwrt.computando.com.br/[^"]*!'"$base_url/$version-SNAPSHOT"'!g' \
 	package/base-files/image-config.in > package/base-files/image-config.branch && \
 		mv package/base-files/image-config.branch package/base-files/image-config.in
 
-git commit -sm "LEDE v$version: set branch defaults" \
+git commit -sm "ImmortalWrt v$version: set branch defaults" \
 	feeds.conf.default \
 	include/version.mk \
 	package/base-files/image-config.in
 
 git --no-pager log -p -1
-git push origin "refs/heads/lede-$version:refs/heads/lede-$version"
+git push origin "refs/heads/immortalwrt-$version:refs/heads/immortalwrt-$version"
 git checkout "${prev_branch#refs/heads/}"
