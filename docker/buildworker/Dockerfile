@@ -6,7 +6,7 @@ ARG         BUILDBOT_VERSION=2.10.1
 ARG         IMMORTALWRT_VERSION=unknown
 
 ENV         BUILDWORKER_MASTER builds.computandotech.com.br:9990
-ENV         BUILDWORKER_ADMIN gustavo.mathias.rocha@gmail.com
+ENV         BUILDWORKER_ADMIN routerbucket@computandotech.com.br
 ENV         BUILDWORKER_DESCRIPTION Docker Container https://github.com/RouterBucket/immortalwrt/tree/$IMMORTALWRT_VERSION
 
 USER root

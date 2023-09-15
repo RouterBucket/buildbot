@@ -73,7 +73,7 @@ jobs:
           file: docker/build${{ matrix.container_flavor }}/Dockerfile
           build-args: |
             BUILDBOT_VERSION=${{ env.BUILDBOT_VERSION }}
-            OPENWRT_VERSION=${{ env.GIT_SHA_SHORT }}
+            IMMORTALWRT_VERSION=${{ env.GIT_SHA_SHORT }}
 
       - name: Test master Docker container
         if: matrix.container_flavor == 'master'
@@ -93,14 +93,14 @@ jobs:
 
       - name: Docker meta
         id: meta
-        if: github.event_name != 'pull_request' || github.repository_owner != 'openwrt'
+        if: github.event_name != 'pull_request' || github.repository_owner != 'RouterBucket'
         uses: docker/metadata-action@v4
         with:
           images: name=ghcr.io/${{ github.repository }}/build${{ matrix.container_flavor }}-v${{ env.BUILDBOT_VERSION }}
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v2
-        if: github.event_name != 'pull_request' || github.repository_owner != 'openwrt'
+        if: github.event_name != 'pull_request' || github.repository_owner != 'RouterBucket'
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
@@ -108,7 +108,7 @@ jobs:
 
       - name: Build container again and push it
         uses: docker/build-push-action@v4
-        if: github.event_name != 'pull_request' || github.repository_owner != 'openwrt'
+        if: github.event_name != 'pull_request' || github.repository_owner != 'RouterBucket'
         with:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
@@ -116,4 +116,4 @@ jobs:
           file: docker/build${{ matrix.container_flavor }}/Dockerfile
           build-args: |
             BUILDBOT_VERSION=${{ env.BUILDBOT_VERSION }}
-            OPENWRT_VERSION=${{ env.GIT_SHA_SHORT }}
+            IMMORTALWRT_VERSION=${{ env.GIT_SHA_SHORT }}
