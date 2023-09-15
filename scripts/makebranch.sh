@@ -3,7 +3,7 @@
 git_author="Release Management"
 git_email="routerbucket@computando.com.br"
 
-base_url="http://dl.immortalwrt.computando.com.br/releases"
+base_url="https://dl.immortalwrt.computando.com.br/releases"
 
 [ -f "./feeds.conf.default" ] || {
 	echo "Please execute as ./${0##*/}" >&2
@@ -122,7 +122,7 @@ sed -e 's!^RELEASE:=.*!RELEASE:='"$codename"'!g' \
 	include/version.mk > include/version.branch && \
 		mv include/version.branch include/version.mk
 
-sed -e 's!http://dl.immortalwrt.computando.com.br/[^"]*!'"$base_url/$version-SNAPSHOT"'!g' \
+sed -e 's!https://dl.immortalwrt.computando.com.br/[^"]*!'"$base_url/$version-SNAPSHOT"'!g' \
 	package/base-files/image-config.in > package/base-files/image-config.branch && \
 		mv package/base-files/image-config.branch package/base-files/image-config.in
 
