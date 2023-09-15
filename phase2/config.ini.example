@@ -1,10 +1,10 @@
 [general]
-title = OpenWrt Project
-title_url = http://openwrt.org/
+title = ImmortalWrt Project
+title_url = http://immortalwrt.computandotech.com.br/
 workdir = /buildbot
 
 [phase2]
-buildbot_url = http://phase2.builds.openwrt.org/
+buildbot_url = http://phase2.builds.immortalwrt.computandotech.com.br/
 status_bind = tcp:8011:interface=127.0.0.1
 status_user = example
 status_password = example
@@ -19,7 +19,7 @@ git_ssh_key = -----BEGIN RSA PRIVATE KEY-----
 	-----END RSA PRIVATE KEY-----
 
 [repo]
-url = https://git.openwrt.org/openwrt/openwrt.git
+url = https://github.com/RouterBucket/immortalwrt.git
 branch = master
 
 [rsync]
